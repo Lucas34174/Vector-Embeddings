@@ -11,5 +11,12 @@ def embed_bert(textes):
     with torch.no_grad():
         sortie = mdl(**b).last_hidden_state      # (n, nb_tokens, dim)
     # TODO 1 : calculer le mean pooling en tenant compte de b["attention_mask"]
+    mask = b["attention_mask"].unsqueeze(-1)
+    sortie = (sortie * mask).sum(dim=1) / mask.sum(dim=1)
     # TODO 2 : normaliser chaque vecteur (norme = 1)
-    return vecteurs.tolist()
+    vecteurs = torch.nn.functional.normalize(sortie, p=2, dim=1)
+    return vecteurs
+
+text_1=embed_bert(["Ny saka matory"])
+text_2 = embed_bert(["Velona ilay saka"])
+print(text_1[0] @ text_2[0])
