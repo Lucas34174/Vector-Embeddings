@@ -34,7 +34,16 @@ print(np.linalg.norm(x,ord=np.inf))
 cos  = (x @ y)/( np.linalg.norm(x)*np.linalg.norm(y))
 print(f"Similarité cosinus : {cos} - {np.arccos(cos)}")
 
+#Vector normalization
+def normalization(vector, eps=1e-12):
+    norm = np.linalg.norm(vector)
+    if(norm<eps):
+        raise ValueError("Vector is likely null")
+    return vector/norm
 
+xh,yh = normalization(x),normalization(y)
+print(xh,yh)
+print(f"dot product: {xh@yh}")
 
 
 
