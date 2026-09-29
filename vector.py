@@ -45,6 +45,9 @@ xh,yh = normalization(x),normalization(y)
 print(xh,yh)
 print(f"dot product: {xh@yh}")
 
-
-
+rng = np.random.default_rng(0)
+X = rng.random((5,8))
+Xn = X / np.linalg.norm(X,axis=1,keepdims=True)
+G  = Xn@Xn.T
+print(G)
 
