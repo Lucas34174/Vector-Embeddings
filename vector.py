@@ -2,7 +2,7 @@ import numpy as np
 import time 
 #Create numpy ndarray
 x = np.array([3.,4.,0.])
-y =  np.array([1.,2.,2.])
+y =  np.array([1,2.,2.])
 
 print(x+y)
 
@@ -30,5 +30,12 @@ print(np.sqrt(x@x))
 print(np.linalg.norm(x))
 print(np.linalg.norm(x,ord=1))
 print(np.linalg.norm(x,ord=np.inf))
+
+cos  = (x @ y)/( np.linalg.norm(x)*np.linalg.norm(y))
+print(f"Similarité cosinus : {cos} - {np.arccos(cos)}")
+
+
+
+
 
 
